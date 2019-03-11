@@ -1,6 +1,7 @@
 import sys
 import pygame
 def run_game():
+    print('execute run_game')
     #初始化游戏并创建一个游戏屏幕对象
     pygame.init()
     #设置当前界面的大小
