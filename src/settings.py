@@ -3,6 +3,7 @@ Created on 2019-3-12
 
 @author: Administrator
 '''
+import bullet
 
 
 class Settings():
@@ -17,3 +18,9 @@ class Settings():
 
         # 飞船的设置
         self.ship_speed_factor = 1.5
+
+        # 子弹的设置
+        self.bullet_speed_factor = 1
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = 60, 60, 60
