@@ -31,6 +31,11 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update(ai_settings)
         bullets.update()
+        # 删除已经消失的子弹
+        for bullet in bullets.copy():
+            if bullet.rect.bottom <= 0:
+                bullets.remove(bullet)
+        print(len(bullets))
         # 每次循环的时候都重绘屏幕
         # screen.fill(bg_color)
        # screen.fill(ai_settings.bg_color)
