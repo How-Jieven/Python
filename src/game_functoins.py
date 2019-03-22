@@ -66,6 +66,8 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
             new_Bullet = Bullet(ai_settings, screen, ship)
             bullets.add(new_Bullet)"""
         fire_bullet(ai_settings, screen, ship, bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 
 def check_keyup_events(event, ship):
