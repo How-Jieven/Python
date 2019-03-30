@@ -12,7 +12,6 @@ from bullet import Bullet
 from ship import Ship
 from alien import Alien
 from pygame.examples import aliens
-from pygame.examples.headless_no_windows_needed import screen
 
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -107,18 +106,19 @@ def creat_fleet(ai_settings, screen, aliens):
     # 创建一个外星人，并计算一行可以容纳多少个外星人
     # 外星人间距是外星人的宽度
     alien = Alien(ai_settings, screen)
-    alien_width = alien.rect.width
-    available_space_x = ai_settings.screen_width - 2 * alien_width
-    number_aliens_x = int(available_space_x / (2 * alien_width))
-    #number_aliens_x = get_number_alines_x(ai_settings, alien.rect.width)
+    #alien_width = alien.rect.width
+    #alien_height = alien.rect.height
+    #available_space_x = ai_settings.screen_width - 2 * alien_width
+    #number_aliens_x = int(available_space_x / (2 * alien_width))
+    number_aliens_x = get_number_alines_x(ai_settings, alien.rect.width)
     # 创建第一个外星人
     for alien_number in range(number_aliens_x):
         # 创建一个外星人并将其加入当前行
-        alien = Alien(ai_settings, screen)
+        """alien = Alien(ai_settings, screen)
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
-        aliens.add(alien)
-        #creat_alien(ai_settings, screen, aliens, alien_number)
+        aliens.add(alien)"""
+        creat_alien(ai_settings, screen, aliens, alien_number)
 
 
 def get_number_alines_x(ai_settings, alien_width):
@@ -132,6 +132,6 @@ def creat_alien(ai_settings, screen, aliens, alien_number):
     """创建一个外星人并将其放在当前行"""
     alien = Alien(ai_settings, screen)
     alien_width = alien.rect.width
-    alien.x = alien_width + alien_width * alien_number
+    alien.x = alien_width + 2 *alien_width * alien_number
     alien.rect.x = alien.x
     aliens.add(alien)
