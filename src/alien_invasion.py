@@ -4,6 +4,7 @@ from settings import Settings
 from ship import Ship
 import game_functoins as gf
 from pygame.sprite import Group
+from alien import Alien
 
 
 def run_game():
@@ -23,6 +24,9 @@ def run_game():
     ship = Ship(ai_settings, screen)
     # 创建一个用于存储子弹的编组
     bullets = Group()
+    #alien = Alien(ai_settings, screen)
+    aliens = Group()
+    gf.creat_fleet(ai_settings, screen, aliens)
     while True:
         # 监视键盘和鼠标事件
        # for event in pygame.event.get():
@@ -30,7 +34,7 @@ def run_game():
            #     sys.exit()
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update(ai_settings)
-        bullets.update()
+        # bullets.update()
         # 删除已经消失的子弹
         """for bullet in bullets.copy():
             if bullet.rect.bottom <= 0:
@@ -43,5 +47,5 @@ def run_game():
         # ship.blitme()
         # 每次循环时都重绘屏幕（让最近绘制的屏幕可见）
         # pygame.display.flip()
-        gf.update_screen(ai_settings, screen, ship, bullets)
+        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 run_game()
