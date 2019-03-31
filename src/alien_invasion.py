@@ -26,7 +26,7 @@ def run_game():
     bullets = Group()
     #alien = Alien(ai_settings, screen)
     aliens = Group()
-    gf.creat_fleet(ai_settings, screen, aliens)
+    gf.creat_fleet(ai_settings, screen, ship, aliens)
     while True:
         # 监视键盘和鼠标事件
        # for event in pygame.event.get():
@@ -41,6 +41,7 @@ def run_game():
                 bullets.remove(bullet)"""
         gf.update_bullets(bullets)
         print(len(bullets))
+        gf.update_aliens(aliens)
         # 每次循环的时候都重绘屏幕
         # screen.fill(bg_color)
        # screen.fill(ai_settings.bg_color)
