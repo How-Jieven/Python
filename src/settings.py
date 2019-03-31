@@ -28,3 +28,6 @@ class Settings():
 
         # 外星人的设置
         self.aline_speed_factor = 1
+        self.fleet_drop_speed = 10
+        # fleet_direction为1表示向右，为-1表示向左
+        self.fleet_direction = 1
