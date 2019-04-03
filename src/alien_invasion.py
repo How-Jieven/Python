@@ -5,6 +5,7 @@ from ship import Ship
 import game_functoins as gf
 from pygame.sprite import Group
 from alien import Alien
+from game_stats import GameStats
 
 
 def run_game():
@@ -27,27 +28,31 @@ def run_game():
     #alien = Alien(ai_settings, screen)
     aliens = Group()
     gf.creat_fleet(ai_settings, screen, ship, aliens)
+
+    # 创建一个用于存储游戏统计信息的实例
+    stats = GameStats(ai_settings)
     while True:
         # 监视键盘和鼠标事件
        # for event in pygame.event.get():
           #  if event.type==pygame.QUIT:
            #     sys.exit()
         gf.check_events(ai_settings, screen, ship, bullets)
-        ship.update(ai_settings)
-       # gf.update_bullets(aliens, bullets)
-        # bullets.update()
-        # 删除已经消失的子弹
-        """for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)"""
-        gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-        print(len(bullets))
-        gf.update_aliens(ai_settings, aliens)
-        # 每次循环的时候都重绘屏幕
-        # screen.fill(bg_color)
-       # screen.fill(ai_settings.bg_color)
-        # ship.blitme()
-        # 每次循环时都重绘屏幕（让最近绘制的屏幕可见）
-        # pygame.display.flip()
+        if stats.game_active:
+            ship.update(ai_settings)
+            # gf.update_bullets(aliens, bullets)
+            # bullets.update()
+            # 删除已经消失的子弹
+            """for bullet in bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    bullets.remove(bullet)"""
+            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            print(len(bullets))
+            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            # 每次循环的时候都重绘屏幕
+            # screen.fill(bg_color)
+            # screen.fill(ai_settings.bg_color)
+            # ship.blitme()
+            # 每次循环时都重绘屏幕（让最近绘制的屏幕可见）
+            # pygame.display.flip()
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 run_game()
