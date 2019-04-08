@@ -232,6 +232,8 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
     """在玩家点击Play按钮时开始新的游戏"""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
+        # 重置游戏设置
+        ai_settings.initialize_dynamic_settings()
         # 隐藏光标
         pygame.mouse.set_visible(False)
         # 重置游戏统计信息
@@ -245,3 +247,11 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
         # 创建一个新的外星人，并让飞船居中
         creat_fleet(ai_settings, screen, ship, aliens)
         ship.center_ship()
+
+
+def chek_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+    if len(aliens == 0):
+        # 删除现有的子弹，加快游戏节奏，并创建一群新的外星人
+        bullets.empty()
+        aisettings.increase_speed()
+        creat_fleet(ai_settings, screen, ship.aliens)
